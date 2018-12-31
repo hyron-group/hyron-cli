@@ -90,7 +90,7 @@ module.exports = () => {
         start: 'node app.js'
       },
       dependencies: {
-        'hyron': '~1.11.8'
+        'hyron': '~2.0.0'
       }
     }
 
