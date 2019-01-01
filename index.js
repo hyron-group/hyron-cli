@@ -25,7 +25,7 @@ module.exports = () => {
       )
       console.log(
         `      ${chalk.cyan(
-          'https://github.com/spatocode/hyron-cli/issues/new'
+          'https://github.com/hyron-group/hyron-cli/issues/new'
         )}`
       )
     })
