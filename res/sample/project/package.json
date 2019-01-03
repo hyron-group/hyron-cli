@@ -1,0 +1,27 @@
+{
+    "name": "$app_name",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "directories": {
+      "doc": "docs",
+      "test": "test"
+    },
+    "dependencies": {
+        "hyron": "latest",
+        "@hyron/param-checker": "latest",
+        "@hyron/stringer": "latest",
+        "chai": "latest",
+        "cookie": "^0.3.1",
+        "mongoose": "latest",
+        "redis": "latest"
+    },
+    "devDependencies": {},
+    "scripts": {
+      "test": "nodemon index.js",
+      "start": "node index.js"
+    },
+    "author": "thangphung",
+    "license": "ISC"
+  }
+  
