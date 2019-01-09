@@ -73,7 +73,7 @@ module.exports = () => {
 
     // JavaScript
     const app = loadFile('js/app.js')
-    const simpleApp = loadFile('js/simpleApp.js')
+    const simpleApp = loadFile('js/router.js')
 
     // Styles
     var styles
