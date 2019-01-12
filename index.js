@@ -73,7 +73,7 @@ module.exports = () => {
 
     // JavaScript
     const app = loadFile('js/app.js')
-    const simpleApp = loadFile('js/router.js')
+    const routes = loadFile('js/router.js')
 
     // Styles
     var styles
@@ -95,6 +95,7 @@ module.exports = () => {
     }
 
     console.log(`   ${chalk.cyan('create')} :  ${chalk.green(appName)}${chalk.green(path.sep)}`)
+    mkdir(appName, 'views')
     mkdir(appName, 'public')
     mkdir(appName, 'public/javascripts')
     mkdir(appName, 'public/images')
@@ -122,10 +123,13 @@ module.exports = () => {
         ext = '.css'
     }
 
-    generateFiles(root, packageJson, app, simpleApp, ext, styles)
+    generateFiles(root, `public/stylesheets/style${ext}`, styles)
 
     mkdir(appName, 'routes')
-    mkdir(appName, 'views')
+
+    generateFiles(root, 'routes/routes.js', routes)
+    generateFiles(root, 'package.json', packageJson)
+    generateFiles(root, 'app.js', app)
 
     console.log()
     console.log()
@@ -154,21 +158,11 @@ module.exports = () => {
   }
 
   // Create new files
-  function generateFiles (rootDir, packageJson, app, simpleApp, ext, styles) {
-    fs.writeFileSync(path.join(rootDir, 'public', 'stylesheets', 'style' + ext), styles)
-    console.log(`   ${chalk.cyan('create')} :  ${chalk.green(path.join(projectName, 'public', 'stylesheets', 'style' + ext))}`)
+  function generateFiles (rootDir, newFile, file) {
+    var tempFile = file === 'packageJson' ? JSON.stringify(file, null, 2) : file
 
-    fs.writeFileSync(
-      path.join(rootDir, 'package.json'),
-      JSON.stringify(packageJson, null, 2)
-    )
-    console.log(`   ${chalk.cyan('create')} :  ${chalk.green(path.join(projectName, 'package.json'))}`)
-
-    fs.writeFileSync(path.join(rootDir, 'app.js'), app)
-    console.log(`   ${chalk.cyan('create')} :  ${chalk.green(path.join(projectName, 'app.js'))}`)
-
-    fs.writeFileSync(path.join(rootDir, 'simpleApp.js'), simpleApp)
-    console.log(`   ${chalk.cyan('create')} :  ${chalk.green(path.join(projectName, 'simpleApp.js'))}`)
+    fs.writeFileSync(path.join(rootDir, newFile), tempFile)
+    console.log(`   ${chalk.cyan('create')} :  ${chalk.green(path.join(projectName, newFile))}`)
   }
 
   if (projectName) createApplication()
