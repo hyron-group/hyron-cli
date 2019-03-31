@@ -16,6 +16,6 @@ function init(type, dirName) {
     copyDir.sync(template, path.join(__dirname, dirName));
 };
 
-init("app", "demoApp")
+// init("app", "demoApp")
 
 module.exports = init;

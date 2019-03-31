@@ -2,41 +2,20 @@
 
 Create Hyron app with no build configuration
 
-## Installation
+# Installation
 
 ```sh
 $ npm install -g hyron-cli
 ```
 
-## Usage
+# Usage
 
-Create the app:
-
-```bash
-$ hyron my-hyron-app
+## 1. Init a module/app used template
+```
+hyron init <app|services|plugins|addons>
 ```
 
-Install dependencies:
-
-```bash
-$ npm install
+## 2. Start app using JSON build file
 ```
-
-Start your Hyron.js app at `http://localhost:3000/`:
-
-```bash
-$ npm start
+hyron start [path]
 ```
-
-## Command Line Options
-
-Hyron CLI can also be further configured with the following command line flags.
-
-        -v, --version        output the version number
-    -s, --style <engine>   add stylesheet <engine> support (less|stylus|compass|sass) (defaults to plain css)
-    -h, --help           output usage information
-
-## License
-
-[MIT](LICENSE)
-
