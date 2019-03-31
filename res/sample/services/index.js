@@ -1,4 +1,4 @@
-const controller = require('./controller/$controller_name');
+const controller = require('./controller');
 
 // used by another services
 module.exports = new controller();

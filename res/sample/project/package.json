@@ -1,5 +1,5 @@
 {
-    "name": "$app_name",
+    "name": "example",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
@@ -9,19 +9,21 @@
     },
     "dependencies": {
         "hyron": "latest",
-        "@hyron/param-checker": "latest",
+        "@hyron/validator": "latest",
         "@hyron/stringer": "latest",
-        "chai": "latest",
-        "cookie": "^0.3.1",
         "mongoose": "latest",
         "redis": "latest"
     },
-    "devDependencies": {},
+    "devDependencies": {
+      "chai": "latest",
+      "mocha": "latest",
+      "nodemon": "latest"
+    },
     "scripts": {
       "test": "nodemon index.js",
       "start": "node index.js"
     },
-    "author": "thangphung",
+    "author": "",
     "license": "ISC"
   }
   
