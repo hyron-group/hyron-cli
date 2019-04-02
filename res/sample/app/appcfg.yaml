@@ -1,7 +1,6 @@
-# This is a 'Module Level' config that used to store config of this plugins
+# This is a 'Application Level' config that used to store config of whole app
 # ---Features---
-# - This config could be implement by 'Application Level' config
-# - Support lock field to prevent inheritance, add '$' character before field name (ex : $key)
+# - This config could be edit 'Module Level' config
 # - Support internal reference to reuse from another field with <#field_path>
 # - Support external reference to import values from another file with <~yaml_path>
 # ---Reference---

@@ -1,6 +1,0 @@
----key_name---
-value
-
-// this is comment
----err_user_not_exist---
-Current user not found in system
