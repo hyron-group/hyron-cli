@@ -17,3 +17,6 @@ array:
 object:
   child1: val1
   child2: val2
+
+plugins_name:
+  it_key: val

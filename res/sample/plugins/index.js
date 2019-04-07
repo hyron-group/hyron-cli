@@ -1,1 +1,4 @@
-// Used to output tools that can run without the need of a hyron
+module.exports = {
+    fontware : require("./src/fontware"),
+    backware : require("./src/backware")
+}
