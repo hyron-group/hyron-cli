@@ -1,0 +1,1 @@
+// used to store function that can be used for many time
