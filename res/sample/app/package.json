@@ -1,29 +1,28 @@
 {
-    "name": "example",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "directories": {
-      "doc": "docs",
-      "test": "test"
-    },
-    "dependencies": {
-        "hyron": "latest",
-        "@hyron/validator": "latest",
-        "@hyron/stringer": "latest",
-        "mongoose": "latest",
-        "redis": "latest"
-    },
-    "devDependencies": {
-      "chai": "latest",
-      "mocha": "latest",
-      "nodemon": "latest"
-    },
-    "scripts": {
-      "test": "nodemon index.js",
-      "start": "node index.js"
-    },
-    "author": "",
-    "license": "ISC"
-  }
-  
+  "name": "example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "dependencies": {
+    "hyron": "latest",
+    "@hyron/validator": "latest",
+    "@hyron/stringer": "latest",
+    "mongoose": "latest",
+    "redis": "latest"
+  },
+  "devDependencies": {
+    "chai": "latest",
+    "mocha": "latest",
+    "nodemon": "latest"
+  },
+  "scripts": {
+    "test": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
