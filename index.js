@@ -2,3 +2,4 @@
 
 require('./src/init');
 require('./src/start');
+require('./src/extension');

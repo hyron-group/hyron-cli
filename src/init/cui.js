@@ -29,7 +29,7 @@ function questionForType(cb) {
         choices: [
             "app", "services", "plugins", "addons"
         ]
-    },{
+    }, {
         type: "fuzzypath",
         excludePath: nodePath => nodePath.startsWith('node_modules'),
         name: "path",
@@ -38,13 +38,14 @@ function questionForType(cb) {
     }];
     inquirer
         .prompt(question)
-        .then(({type, path}) => {
+        .then(({ type, path }) => {
             questionForInit(type, path, cb);
         });
 }
 
 function questionForInit(type, path = "", cb) {
-    if(type==null) return questionForType(cb);
+    if (cb == null) cb = () => { };
+    if (type == null) return questionForType(cb);
     var path = node_path.join(__dirname, path);
     var question = [{
         type: "input",
@@ -98,5 +99,6 @@ function runCmd(event) {
 
 }
 
+questionForInit();
 
 module.exports = runCmd;
