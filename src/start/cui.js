@@ -1,4 +1,4 @@
-const commander = require('commander');
+const commander = require("commander");
 const inquirer = require("inquirer");
 const fuzzyPath = require("inquirer-fuzzy-path");
 
@@ -16,11 +16,7 @@ function questionForStart(cb) {
     }];
 
     inquirer.registerPrompt("fuzzypath", fuzzyPath);
-    inquirer.prompt(question).then((answer) => {
-        var {
-            path
-        } = answer;
-
+    inquirer.prompt(question).then(({path}) => {
         cb(path, env);
     });
 }
@@ -37,8 +33,9 @@ function runCmd(event) {
 
     commander
         .command("start [path]")
-        .option("-d, --dev", "run application using hyron framework in development environment")
-        .option("-p, --product", "run application using hyron framework in product environment")
+        .description("run application using hyron framework")
+        .option("-d, --dev", "run in development environment")
+        .option("-p, --product", "run in product environment")
         .action(askIfNeccessary);
 
     commander.parse(process.argv);

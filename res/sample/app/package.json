@@ -16,8 +16,7 @@
   },
   "devDependencies": {
     "chai": "latest",
-    "mocha": "latest",
-    "nodemon": "latest"
+    "mocha": "latest"
   },
   "scripts": {
     "test": "nodemon index.js",
