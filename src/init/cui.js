@@ -1,4 +1,12 @@
 
+const commander = require("commander");
+const inquirer = require("inquirer");
+const fuzzyPath = require("inquirer-fuzzy-path");
+const node_path = require("path");
+
+inquirer.registerPrompt("fuzzypath", fuzzyPath);
+
+
 function isValidDir(path, name) {
     try {
         var isExist = !fs
@@ -13,8 +21,31 @@ function isValidName(name) {
     return /[\w\d_]+/.test(name);
 }
 
+function questionForType(cb) {
+    var question = [{
+        type: "list",
+        name: "type",
+        message: "What do you want to initialize ?",
+        choices: [
+            "app", "services", "plugins", "addons"
+        ]
+    }, {
+        type: "fuzzypath",
+        excludePath: nodePath => nodePath.startsWith('node_modules'),
+        name: "path",
+        default: "/",
+        message: "path",
+    }];
+    inquirer
+        .prompt(question)
+        .then(({ type, path }) => {
+            questionForInit(type, path, cb);
+        });
+}
+
 function questionForInit(type, path = "", cb) {
-    console.log("init " + type);
+    if (cb == null) cb = () => { };
+    if (type == null) return questionForType(cb);
     var path = node_path.join(__dirname, path);
     var question = [{
         type: "input",
@@ -55,18 +86,19 @@ function questionForInit(type, path = "", cb) {
             cb(type, path, moduleInfo);
         });
 
-    inquirer.registerPrompt("fuzzypath", fuzzyPath);
-
 }
 
 function runCmd(event) {
     commander
-        .command("init <type> [path]")
+        .command("init [type] [path]")
+        .description("init module or application using template")
         .action((type, path) => {
             questionForInit(type, path, event);
-        })
+        });
+    commander.parse(process.argv);
+
 }
 
-commander.parse(process.argv);
+questionForInit();
 
 module.exports = runCmd;
