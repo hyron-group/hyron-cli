@@ -1,6 +1,6 @@
 {
   "name": "hyron-cli",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "Create Hyron app with no build configuration",
   "author": [
     "Thang Phung <thangphung.work@gmail.com>",
