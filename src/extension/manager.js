@@ -1,13 +1,13 @@
 const { exec } = require("child_process");
 const editJson = require("edit-json-file");
-const onExt = "./onExt.json";
+const onExtPath = "./onExt.json";
 
 var supportedAction = {
 
     install(name) {
         exec(`yarn add ${name}`, (err)=>{
             if(err!=null){
-                var extFile = editJson(editJson);
+                var extFile = editJson(onExtPath);
                 extFile.set(name, "");
                 extFile.save();
             }
@@ -18,8 +18,8 @@ var supportedAction = {
     remove(name) {
         exec(`yarn remove ${name}`, (err)=>{
             if(err!=null){
-                var extFile = editJson(editJson);
-                extFile.unset(name, "");
+                var extFile = editJson(onExtPath);
+                extFile.unset(name);
                 extFile.save();
             }
         })

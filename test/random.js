@@ -1,6 +1,17 @@
-const je = require("edit-json-file");
+const inquirer = require("inquirer");
+const fuz = require("inquirer-fuzzy-path");
 
-var a = je("test/aa.json", {});
-a.unset("name3");
+inquirer.registerPrompt("fuz", fuz);
 
-a.save()
+inquirer
+    .prompt([{
+        type: "fuz",
+        name: "type",
+        message: "type",
+        itemType: 'file',
+        excludePath: (nodePath) => {
+            var r = /node_module/.test(nodePath);
+            return r;
+        },
+    }]).then();
+

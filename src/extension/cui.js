@@ -1,13 +1,23 @@
 const inquirer = require("inquirer");
-const commander = require("commander");
 
-function runCmd(cb){
-    commander
-    .description("manager extension plug to hyron-cli")
-    .command("ext <action> [args]")
-    .action(()=>{
-        cb(action, args);
-    })
+function askForAction() {
+    var question = [{
+        type: "list",
+        name: "type",
+        message: "type",
+        choices: [
+            "install",
+            "remove",
+            "list"
+        ]
+    }, {
+        type: "name",
+        message: "type"
+    }];
+
+    return inquirer
+        .prompt(question)
+        .then()
 }
 
-module.exports = runCmd;
+module.exports = askForAction;

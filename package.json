@@ -1,6 +1,6 @@
 {
   "name": "hyron-cli",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Create Hyron app with no build configuration",
   "author": [
     "Thang Phung <thangphung.work@gmail.com>",
@@ -28,7 +28,7 @@
     "edit-json-file": "^1.2.1",
     "envinfo": "^6.0.1",
     "fs-extra": "^7.0.1",
-    "hyron": "^2.6.2",
+    "hyron": "^2.6.3",
     "inquirer": "^6.3.1",
     "inquirer-autocomplete-prompt": "^1.0.1",
     "inquirer-fuzzy-path": "^2.0.3",
