@@ -1,0 +1,12 @@
+[
+  {
+    "base_url": "http://localhost:3000",
+    "setting": {},
+    "addons": {},
+    "plugins": {},
+    "services": {
+      "fr": "services/fr",
+      "2vae": "services/2vae"
+    }
+  }
+]
