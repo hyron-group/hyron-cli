@@ -21,31 +21,33 @@ function isValidName(name) {
     return /[\w\d_]+/.test(name);
 }
 
-function questionForType(cb) {
+function questionForPath(cb) {
     var question = [{
-        type: "list",
-        name: "type",
-        message: "What do you want to initialize ?",
-        choices: [
-            "app", "services", "plugins", "addons"
-        ]
-    },{
         type: "fuzzypath",
-        excludePath: nodePath => nodePath.startsWith('node_modules'),
+        excludePath: nodePath => /node_module/.test(nodePath),
         name: "path",
         default: "/",
         message: "path",
     }];
-    inquirer
-        .prompt(question)
-        .then(({type, path}) => {
-            questionForInit(type, path, cb);
-        });
+    return inquirer
+        .prompt(question).then();
 }
 
-function questionForInit(type, path = "", cb) {
-    if(type==null) return questionForType(cb);
-    var path = node_path.join(__dirname, path);
+function questionForType() {
+    var question = [{
+        type: "list",
+        name: "type",
+        message: "type",
+        choices: [
+            "app", "services", "plugins", "addons"
+        ]
+    }];
+    return inquirer
+        .prompt(question).then();
+}
+
+function questionForInfo(type, path) {
+
     var question = [{
         type: "input",
         name: "name",
@@ -62,7 +64,16 @@ function questionForInit(type, path = "", cb) {
         name: "keywords",
         message: "tags : ",
         filter: (input) => {
-            return input.split(",").map((t) => t.trim());
+            var tags = [];
+            if (type != "app") {
+                tags.push("hyron-" + type);
+            }
+            if (input != "") {
+                var parserTags = input.split(",").map((t) => t.trim());
+                console.log(JSON.stringify(parserTags))
+                tags.push(parserTags);
+            }
+            return tags;
         }
     }, {
         type: "input",
@@ -76,27 +87,25 @@ function questionForInit(type, path = "", cb) {
         type: "fuzzypath",
         name: "instance",
         message: "instance : ",
-        rootPath: "server",
+        excludePath: nodePath => (/[\w\d\s-]+\.json/).test(nodePath),
         default: "server/app.json",
     }];
-    inquirer
-        .prompt(question)
-        .then((moduleInfo) => {
-            cb(type, path, moduleInfo);
-        });
-
+    return inquirer
+        .prompt(question).then();
 }
 
-function runCmd(event) {
-    commander
-        .command("init [type] [path]")
-        .description("init module or application using template")
-        .action((type, path) => {
-            questionForInit(type, path, event);
-        });
-    commander.parse(process.argv);
+async function questionForInit(type, path) {
+    if (type == null) {
+        var { type } = await questionForType();
+    }
+    if (path == null) {
+        var { path } = await questionForPath();
+    }
+    var info = await questionForInfo(type, path);
 
+    path = node_path.join(process.cwd(), path);
+
+    return {type, path, info}
 }
 
-
-module.exports = runCmd;
+module.exports = questionForInit;

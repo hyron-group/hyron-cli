@@ -1,10 +1,17 @@
-var {exec} = require("child_process");
-var {Spinner} = require('cli-spinner');
+const inquirer = require("inquirer");
+const fuz = require("inquirer-fuzzy-path");
 
-var spinner = new Spinner('processing.. %s');
-spinner.setSpinnerString(0);
-spinner.start();
-var p = exec(`cd ./test/asd ; npm i`,(err)=>{
-    spinner.stop()
-});
-p.stdout.pipe(process.stdout);
+inquirer.registerPrompt("fuz", fuz);
+
+inquirer
+    .prompt([{
+        type: "fuz",
+        name: "type",
+        message: "type",
+        itemType: 'file',
+        excludePath: (nodePath) => {
+            var r = /node_module/.test(nodePath);
+            return r;
+        },
+    }]).then();
+
