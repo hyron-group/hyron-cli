@@ -1,4 +1,4 @@
 module.exports = {
-    fontware : require("./src/fontware"),
+    frontware : require("./src/frontware"),
     backware : require("./src/backware")
 }

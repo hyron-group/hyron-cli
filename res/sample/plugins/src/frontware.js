@@ -11,7 +11,7 @@ module.exports = {
         // this function used to revoke onCreate function if return true, or call done() if onCreate hasn't revoke anymore
     },
 
-    // true if this fontware called for all services, except except for the router configured not
+    // true if this frontware called for all services, except except for the router configured not
     global: false,
 
     // type of prev that handle function will be execute or skip if prev not instance of type in array
