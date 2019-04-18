@@ -1,12 +1,11 @@
 {
-  "name": "hyron-cli",
-  "version": "1.5.0",
+  "name": "@hyron/cli",
+  "version": "1.0.0",
   "description": "Create Hyron app with no build configuration",
   "author": [
-    "Thang Phung <thangphung.work@gmail.com>",
-    "Ekene Izukanne <ekeneizukanne@gmail.com>"
+    "Thang Phung <thangphung.work@gmail.com>"
   ],
-  "homepage": "h    ttps://github.com/hyron-group/hyron-cli#README",
+  "homepage": "https://docs.hyron.org",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hyron-group/hyron-cli.git"
