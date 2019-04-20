@@ -7,7 +7,7 @@ function askForStart() {
         name: "path",
         itemType: "file",
         rootPath: "server",
-        excludePath: nodePath => /node_module/.test(nodePath),
+        excludePath: nodePath => nodePath.startsWith("node_modules"),
         message: "Select file (json) : ",
         suggestOnly: false
     }];

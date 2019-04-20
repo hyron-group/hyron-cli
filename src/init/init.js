@@ -4,11 +4,13 @@ const { exec } = require("child_process");
 const node_path = require("path");
 const { Spinner } = require("cli-spinner");
 const fs = require("fs");
-const supportedType = fs.readdirSync("./res/sample/");
+var samplePath = node_path.join(__dirname, "../../", "./res/sample/");
+const supportedType = fs.readdirSync(samplePath);
 
 
 function copyTemplate(type, path, name) {
-    var template = node_path.join("./res/sample/", type);
+    var template = node_path.join(samplePath, type);
+    console.log(template);
     if (supportedType.includes(type)) {
         var targetLocal = node_path.join(path, name);
         copyDir.sync(template, targetLocal);
