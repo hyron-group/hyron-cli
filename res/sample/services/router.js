@@ -1,3 +1,3 @@
 const controller = require("./controller");
 
-module.export = controller;
+module.exports = controller;

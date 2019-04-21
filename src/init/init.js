@@ -37,6 +37,9 @@ function updateBuildFile(path, instance, name, type) {
         field = "0." + field;
     }
     var modulePath = node_path.join(type, name);
+    if(type=="services"){
+        modulePath = node_path.join(modulePath, "./router.js");
+    }
     buildFile.set(field, modulePath);
     buildFile.save();
 }

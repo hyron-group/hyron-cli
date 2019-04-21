@@ -1,5 +1,4 @@
 
-const commander = require("commander");
 const inquirer = require("inquirer");
 const fuzzyPath = require("inquirer-fuzzy-path");
 const node_path = require("path");
@@ -21,12 +20,12 @@ function isValidName(name) {
     return /[\w\d_]+/.test(name);
 }
 
-function questionForPath(cb) {
+function questionForPath(type) {
     var question = [{
         type: "fuzzypath",
         excludePath: nodePath => /node_module/.test(nodePath),
         name: "path",
-        default: "/",
+        default: type,
         message: "path",
     }];
     return inquirer
@@ -49,22 +48,22 @@ function questionForType() {
 function questionForInfo(type, path) {
 
     var question = [{
-        type: "input",
         name: "name",
+        type: "input",
         message: type + " name : ",
         validate: (input) => {
             return isValidName(input) && isValidDir(path, input);
         }
     }, {
-        type: "input",
         name: "description",
+        type: "input",
         message: "description : "
     }, {
-        type: "input",
         name: "keywords",
+        type: "input",
         message: "tags : ",
         filter: (input) => {
-            var tags = [];
+            var tags = [];              
             if (type != "app") {
                 tags.push("hyron-" + type);
             }
@@ -76,16 +75,16 @@ function questionForInfo(type, path) {
             return tags;
         }
     }, {
-        type: "input",
         name: "version",
+        type: "input",
         message: "version : ",
         default: "1.0.0",
         validate: (input) => {
             return /[\d]+.[\d]+.[\d]/.test(input);
         }
     }, {
-        type: "fuzzypath",
         name: "instance",
+        type: "fuzzypath",
         message: "instance : ",
         excludePath: nodePath => (/[\w\d\s-]+\.json/).test(nodePath),
         default: "server/app.json",
@@ -98,8 +97,9 @@ async function questionForInit(type, path) {
     if (type == null) {
         var { type } = await questionForType();
     }
+
     if (path == null) {
-        var { path } = await questionForPath();
+        var { path } = await questionForPath(type);
     }
     var info = await questionForInfo(type, path);
 
