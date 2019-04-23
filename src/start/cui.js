@@ -14,6 +14,4 @@ function askForStart() {
     return inquirer.prompt(question).then()
 }
 
-askForStart()
-
 module.exports = askForStart;
