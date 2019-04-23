@@ -6,14 +6,14 @@ function askForStart() {
         type: "fuzzypath",
         name: "path",
         itemType: "file",
-        rootPath: "server",
-        excludePath: nodePath => nodePath.startsWith("node_modules"),
+        excludePath: nodePath => /node_modules|\.git/.test(nodePath),
         message: "Select file (json) : ",
-        suggestOnly: false
     }];
 
     inquirer.registerPrompt("fuzzypath", fuzzyPath);
     return inquirer.prompt(question).then()
 }
+
+askForStart()
 
 module.exports = askForStart;

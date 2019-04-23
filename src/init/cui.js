@@ -23,7 +23,7 @@ function isValidName(name) {
 function questionForPath(type) {
     var question = [{
         type: "fuzzypath",
-        excludePath: nodePath => /node_module/.test(nodePath),
+        excludePath: nodePath => /node_modules|\.git/.test(nodePath),
         name: "path",
         default: type,
         message: "path",
