@@ -25,7 +25,7 @@ function questionForPath(type) {
         type: "fuzzypath",
         excludePath: nodePath => /node_modules|\.git/.test(nodePath),
         name: "path",
-        default: type,
+        default: type=="app"?"./":type,
         message: "path",
     }];
     return inquirer
@@ -69,7 +69,6 @@ function questionForInfo(type, path) {
             }
             if (input != "") {
                 var parserTags = input.split(",").map((t) => t.trim());
-                console.log(JSON.stringify(parserTags))
                 tags.push(parserTags);
             }
             return tags;
